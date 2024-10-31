@@ -1,0 +1,20 @@
+import wollok.game.*
+import controlJuego.*
+
+import example.pepita
+import personaje.*
+
+
+program PepitaGame {
+	game.title("Pepita")
+	game.height(10)
+	game.width(10)
+
+
+	game.addVisual(enemigo)
+	
+	control.cambiarDireccionDerecha(enemigo)
+
+
+	game.start()
+}
