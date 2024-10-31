@@ -12,10 +12,10 @@ object control {
     }
 
     method cambiarDireccionDerecha(unEnemigo){
-        game.onTick(500, "izquierda", {
+        game.onTick(500, "derecha", {
             unEnemigo.moveteDerecha()
             if (unEnemigo.estoyBordeDerecho()){
-                game.removeTickEvent("izquierda")
+                game.removeTickEvent("derecha")
                 self.cambiarDireccionIzquierda(unEnemigo)
             }
         })
