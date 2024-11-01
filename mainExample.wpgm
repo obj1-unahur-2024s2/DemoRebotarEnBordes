@@ -9,11 +9,8 @@ program PepitaGame {
 	game.title("Pepita")
 	game.height(10)
 	game.width(10)
-
-
-	game.addVisual(enemigo)
 	
-	control.cambiarDireccionDerecha(enemigo)
+	control.inicializar()
 
 
 	game.start()

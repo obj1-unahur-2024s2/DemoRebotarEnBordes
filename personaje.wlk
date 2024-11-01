@@ -1,8 +1,8 @@
 import wollok.game.*
 
-object enemigo {
+class Enemigo {
     const property image = "enemigo"
-    var property position = game.origin()
+    var property position 
 
     method moveteDerecha() {
         position = position.right(1)
@@ -11,9 +11,6 @@ object enemigo {
     method moveteIquierda() {
         position = position.left(1)
     }
-
-    method estoyBordeDerecho()= position.x() == game.width() - 1
-    method estoyBordeIzquierdo()= position.x() == 0
 
 
 }
