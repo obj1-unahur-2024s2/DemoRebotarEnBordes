@@ -1,9 +1,9 @@
-import example.pepita
+import cohete.*
 
-describe "group of tests for pepita" {
+describe "cohetes" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "el cohete se crea con imagen  hacia arriba " {
+    assert.equals("coheteU.png", new Cohete().image())
   }
 
 }

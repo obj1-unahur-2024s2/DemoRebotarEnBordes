@@ -1,17 +1,22 @@
 import wollok.game.*
 import controlJuego.*
 
-import example.pepita
+import cohete.*
 import personaje.*
 
 
-program PepitaGame {
-	game.title("Pepita")
-	game.height(10)
-	game.width(10)
+program alCohete {
+	game.height(11)
+	game.width(23)
 	
-	control.inicializar()
+//	control.inicializar()
+//	game.addVisual(new Cohete())
+//	game.addVisual(new CohetePausado())
+//	game.addVisual(new CoheteAcelerado())
+	game.addVisual(new CoheteDiagonal())
+//	game.addVisual(new CoheteRebotador(position = game.at(5,1)))
 
 
+    keyboard.space().onPressDo({game.stop()})
 	game.start()
 }

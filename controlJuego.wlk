@@ -14,7 +14,7 @@ object control {
                 
                 if(0.randomUpTo(1) <= 0.5) self.cambiarDireccionDerecha(enemigo, "Evento-" + value)
                 else self.cambiarDireccionIzquierda(enemigo, "Evento-" + value)
-                game.addVisual(enemigo)
+               // game.addVisual(enemigo)
             })    
         }
     }
