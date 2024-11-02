@@ -7,67 +7,52 @@ class Cohete {
   method initialize() {
     game.onTick(200,"cohete",{self.desplazarse()})
   }
-  method desplazarse(){
-    self.avanzar()
-    if (self.llego())
-      self.girar()
-  }
-  method llego() = orientacion.enElBorde(position)
 
-  method girar() {
-    orientacion = orientacion.siguiente()
+  method desplazarse() {
+    self.avanzar()
+    if(self.llego())
+       self.girar()
   }
+
   method avanzar() {
     position = orientacion.adelante(position)
+   /* if (orientacion == "U")
+      position = position.up(1)
+    if (orientacion == "D")
+      position = position.down(1)
+    if (orientacion == "R")
+      position = position.right(1)
+    if (orientacion == "L")
+      position = position.left(1)*/
   }
-
-}
-
-class CoheteDistraido inherits Cohete {
-  override method llego() = talvez.seaCierto(10) or super()
-}
-
-class CohetePausado inherits Cohete {
-  var property probabilidad = 50
-  override method avanzar() {
-    if (talvez.seaCierto(probabilidad))
-      super()
-   // talvez.hace({super()},probabilidad)
+  method llego() =
+      orientacion.enElBorde(position) 
+  //  (position.y() == game.height()-1 and orientacion == "U") or
+  //  (position.x() == game.width()-1 and orientacion == "R")
+    // falta bajo y izq
+  
+  method girar() {
+    orientacion = orientacion.siguiente()
+  /*  if (orientacion == "U")
+      orientacion = "R"
+    else 
+      if (orientacion == "R")
+        orientacion = "D"
+      */
   }
+ 
 }
-
-class CoheteRebotador inherits Cohete {
-  override method girar() {
-    orientacion = orientacion.opuesto()
- //  (1..3).anyOne().times{x=> super()}
-  } 
-}
-
 
 class CoheteAcelerado inherits Cohete {
   override method avanzar() {
     super()
     super()
- //  (1..3).anyOne().times{x=> super()}
   } 
 }
 
-
-class CoheteDiagonal inherits Cohete{
-
-  override method avanzar() {
-    super()
-    position = orientacion.siguiente().adelante(position)
-  }
-
-  override method llego() = super() or orientacion.siguiente().enElBorde(position)
-
+class CoheteRebotador inherits Cohete {
   override method girar() {
-    super()
-    if (orientacion.enElBorde(position)){
-      super()
-      super()
-    }
+    orientacion = orientacion.opuesto()
   }
 }
 
@@ -78,7 +63,6 @@ object up{
   method adelante(position) = position.up(1)
   method enElBorde(position) = position.y() >= game.height()-1
 }
-
 object right{
   method descripcion() = "R"
   method siguiente() = down
@@ -103,6 +87,61 @@ object left{
   method enElBorde(position) = position.x() <= 0
 }
 
+class CoheteDistraido inherits Cohete {
+  override method llego() = talvez.seaCierto(10) or super()
+}
+
+class CohetePausado inherits Cohete {
+  var property probabilidad = 50
+  override method avanzar() {
+    if (talvez.seaCierto(probabilidad))
+      super()
+   // talvez.hace({super()},probabilidad)
+  }
+}
+class CoheteDiagonal inherits Cohete{
+
+  override method avanzar() {
+    super()
+    position = orientacion.siguiente().adelante(position)
+  }
+
+  override method llego() = super() or orientacion.siguiente().enElBorde(position)
+
+  override method girar() {
+    super()
+    if (orientacion.enElBorde(position)){
+      super()
+      super()
+    }
+  }
+}
+
+
+
+/*
+class CoheteRebotador inherits Cohete {
+  override method girar() {
+    orientacion = orientacion.opuesto()
+ //  (1..3).anyOne().times{x=> super()}
+  } 
+}
+
+
+class CoheteAcelerado inherits Cohete {
+  override method avanzar() {
+    super()
+    super()
+ //  (1..3).anyOne().times{x=> super()}
+  } 
+}
+
+
+
+
+
+
+*/
 object talvez {
 
   method seaCierto(porcentaje) = 0.randomUpTo(1)*100 < porcentaje

@@ -4,17 +4,21 @@ import controlJuego.*
 import cohete.*
 import personaje.*
 
-
 program alCohete {
 	game.height(11)
 	game.width(23)
 	
 //	control.inicializar()
 //	game.addVisual(new Cohete())
+//	game.addVisual(new CoheteDistraido())
 //	game.addVisual(new CohetePausado())
+//	game.addVisual(new CohetePausado(probabilidad = 90))
+//	game.addVisual(new CohetePausado(probabilidad = 25))
+
 //	game.addVisual(new CoheteAcelerado())
 	game.addVisual(new CoheteDiagonal())
 //	game.addVisual(new CoheteRebotador(position = game.at(5,1)))
+//	game.addVisual(new CoheteRebotador(position = game.at(1,5),orientacion = right))
 
 
     keyboard.space().onPressDo({game.stop()})
