@@ -1,25 +1,21 @@
 import wollok.game.*
-import controlJuego.*
 
-import cohete.*
+//Juego de los autos
+import controlJuego.*
 import personaje.*
 
-program alCohete {
+//Juego cohetes
+import cohete.*
+
+program juegosRebotadores {
 	game.height(11)
 	game.width(23)
 	
-//	control.inicializar()
-//	game.addVisual(new Cohete())
-//	game.addVisual(new CoheteDistraido())
-//	game.addVisual(new CohetePausado())
-//	game.addVisual(new CohetePausado(probabilidad = 90))
-//	game.addVisual(new CohetePausado(probabilidad = 25))
+	// Ejemplo de autitos tipo frogger
+	//control.inicializar()
 
-//	game.addVisual(new CoheteAcelerado())
-	game.addVisual(new CoheteDiagonal())
-//	game.addVisual(new CoheteRebotador(position = game.at(5,1)))
-//	game.addVisual(new CoheteRebotador(position = game.at(1,5),orientacion = right))
-
+	// Ejemplo de cohetes giratorios
+	juegoCohetes.iniciar()
 
     keyboard.space().onPressDo({game.stop()})
 	game.start()

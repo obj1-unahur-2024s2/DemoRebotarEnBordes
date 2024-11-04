@@ -1,3 +1,21 @@
+object juegoCohetes{
+
+  method iniciar(){
+	  game.addVisual(new Cohete())
+
+//  Comentar para ir probando los diferentes Cohetes individualmente
+    game.addVisual(new CoheteDistraido())
+    game.addVisual(new CohetePausado())
+    game.addVisual(new CohetePausado(probabilidad = 90))
+    game.addVisual(new CohetePausado(probabilidad = 25))
+
+    game.addVisual(new CoheteAcelerado())
+    game.addVisual(new CoheteDiagonal())
+    game.addVisual(new CoheteRebotador(position = game.at(5,1)))
+    game.addVisual(new CoheteRebotador(position = game.at(1,5),orientacion = right))
+  }
+}
+
 class Cohete {
   var orientacion = up
   var property position = game.origin()
@@ -42,20 +60,6 @@ class Cohete {
   }
  
 }
-
-class CoheteAcelerado inherits Cohete {
-  override method avanzar() {
-    super()
-    super()
-  } 
-}
-
-class CoheteRebotador inherits Cohete {
-  override method girar() {
-    orientacion = orientacion.opuesto()
-  }
-}
-
 object up{
   method descripcion() = "U"
   method siguiente() = right
@@ -91,23 +95,33 @@ class CoheteDistraido inherits Cohete {
   override method llego() = talvez.seaCierto(10) or super()
 }
 
+class CoheteAcelerado inherits Cohete {
+  override method avanzar() {
+    super()
+    super()
+  } 
+}
+
+class CoheteRebotador inherits Cohete {
+  override method girar() {
+    orientacion = orientacion.opuesto()
+  }
+}
+
+
 class CohetePausado inherits Cohete {
   var property probabilidad = 50
   override method avanzar() {
     if (talvez.seaCierto(probabilidad))
       super()
-   // talvez.hace({super()},probabilidad)
   }
 }
 class CoheteDiagonal inherits Cohete{
-
   override method avanzar() {
     super()
     position = orientacion.siguiente().adelante(position)
   }
-
   override method llego() = super() or orientacion.siguiente().enElBorde(position)
-
   override method girar() {
     super()
     if (orientacion.enElBorde(position)){
@@ -117,37 +131,6 @@ class CoheteDiagonal inherits Cohete{
   }
 }
 
-
-
-/*
-class CoheteRebotador inherits Cohete {
-  override method girar() {
-    orientacion = orientacion.opuesto()
- //  (1..3).anyOne().times{x=> super()}
-  } 
-}
-
-
-class CoheteAcelerado inherits Cohete {
-  override method avanzar() {
-    super()
-    super()
- //  (1..3).anyOne().times{x=> super()}
-  } 
-}
-
-
-
-
-
-
-*/
 object talvez {
-
   method seaCierto(porcentaje) = 0.randomUpTo(1)*100 < porcentaje
- 
- // method hace(tarea, porcentaje) {
- //   if (self.seaCierto(porcentaje))
- //     tarea.apply()
- // }
 }

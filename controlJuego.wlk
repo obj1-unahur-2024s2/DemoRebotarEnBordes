@@ -3,9 +3,13 @@ import personaje.*
 object control {
 
     method inicializar(){
-        controlTeclado.inicializar(toni)
+        const mario = new Plomero(position=game.origin())
+        controlTeclado.inicializar(mario)
         toni.position(controlDeMovimientos.defaultPosition())
+        game.addVisual(mario)
         game.addVisual(toni)
+     	keyboard.enter().onPressDo({controlTeclado.inicializar(toni)})
+    
         
         (1..game.height()-2).forEach{ value => 
             game.schedule(value * 1000, {
@@ -14,7 +18,7 @@ object control {
                 
                 if(0.randomUpTo(1) <= 0.5) self.cambiarDireccionDerecha(enemigo, "Evento-" + value)
                 else self.cambiarDireccionIzquierda(enemigo, "Evento-" + value)
-               // game.addVisual(enemigo)
+                game.addVisual(enemigo)
             })    
         }
     }

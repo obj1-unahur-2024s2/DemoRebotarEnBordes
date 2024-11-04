@@ -1,5 +1,4 @@
-
-import controlJuego.controlDeMovimientos;
+import controlJuego.controlDeMovimientos
 class Enemigo {
     const property image = "enemigo.png"
     const property movimiento = controlDeMovimientos
@@ -16,5 +15,15 @@ object toni {
     }
     method vidas()= vidas
     method aunEstoyVivo() = vidas > 0
+
+}
+
+class Plomero {
+    var salud = 100
+    var property position 
+    method image() = "mario.png"
+    method descontarVida(){
+        salud -= 10
+    }
 
 }
